@@ -12,21 +12,24 @@ for b in list_http_old:
     else:
         pass
     i+=1
-print(list_http)
-print(len(list_http))
+#print(list_http)
+#print(len(list_http))
 i=0
+j=0
 n=len(list_http)
 while i<n:       #должно быть i<len(list_http)
     i=i+1
     data2=requests.get(list_http[i])
     temp=re.findall(r'[http]+[s]?[:]..[w]+\.[a-zA-Z]+\.[a-zA-Z0-9_\/]+',str(data2.content))
     for b in temp:
-        if b not in list_http and list_http_old[i].rfind(url,0,len(url))!=-1:
+        if b not in list_http and temp[j].rfind(url,0,len(url))!=-1:
             list_http.append(b)
         else:
             pass
-list_http.append(url)
-print(len(list_http))
+        j+=1
+    j=0
+list_http.append('http://www.mosigra.ru/')
+#print(len(list_http))
 i=0
 while i<20:      #должно быть i<len(list_http)
     i=i+1
